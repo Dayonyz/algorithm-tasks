@@ -1,0 +1,28 @@
+{
+    "name": "algorithm/tasks",
+    "type": "project",
+    "description": "Algorithm tasks",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "ext-curl": "*",
+        "phpunit/phpunit": "^10.1",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

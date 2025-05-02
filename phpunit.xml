@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+        bootstrap="tests/bootstrap.php"
+        colors="true"
+        stopOnFailure="false"
+        displayDetailsOnTestsThatTriggerDeprecations="true"
+        displayDetailsOnPhpunitDeprecations="true"
+        displayDetailsOnTestsThatTriggerErrors="true"
+        displayDetailsOnTestsThatTriggerWarnings="true"
+>
+    <testsuites>
+        <testsuite name="Unit Tests">
+            <directory suffix="Test.php">./tests/Unit</directory>
+        </testsuite>
+    </testsuites>
+
+    <source>
+        <include>
+            <directory suffix=".php">./</directory>
+        </include>
+    </source>
+
+<!--    <coverage>-->
+<!--        <report>-->
+<!--            <html outputDirectory="coverage-report"/>-->
+<!--        </report>-->
+<!--    </coverage>-->
+
+    <php>
+        <ini name="display_errors" value="1"/>
+        <ini name="error_reporting" value="E_ALL"/>
+    </php>
+</phpunit>
