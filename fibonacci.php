@@ -19,17 +19,23 @@ function fibonacci(int $n, int &$memoryUsage = 0) {
     if (isset($buffer[$n])) {
         $memoryUsage = memory_get_usage() - $memoryUsageStart;
 
-        return $buffer[$n];
+        $result = $buffer[$n];
+        $buffer = [];
+        $memoryUsageStart = 0;
+
+        return $result;
     }
 
     if ($n === 0) {
         $buffer[$n] = 0;
         $memoryUsage = memory_get_usage() - $memoryUsageStart;
+        $memoryUsageStart = 0;
 
         return 0;
     } else if($n === 1 || $n === 2) {
         $buffer[$n] = 1;
         $memoryUsage = memory_get_usage() - $memoryUsageStart;
+        $memoryUsageStart = 0;
 
         return 1;
     } else if ($n > 2) {
@@ -44,7 +50,11 @@ function fibonacci(int $n, int &$memoryUsage = 0) {
 
         $memoryUsage = memory_get_usage() - $memoryUsageStart;
 
-        return $buffer[$n];
+        $result = $buffer[$n];
+        $buffer = [];
+        $memoryUsageStart = 0;
+
+        return $result;
     }
 }
 
