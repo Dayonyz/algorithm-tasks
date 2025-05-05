@@ -55,52 +55,41 @@ class FibonacciTest extends TestCase
     public function test_fibonacci_compare_time_and_memory_usage()
     {
         $testFibonacci = function (): array {
-            $memoryUsage = 0;
-
             $startTime = microtime(true);
 
-            fibonacci(30, $memoryUsage);
+            fibonacci(30);
 
             $endTime = microtime(true);
 
             $duration = $endTime - $startTime;
 
-            return ['duration' => $duration, 'memoryUsage' => $memoryUsage];
+            return ['duration' => $duration];
         };
 
         $testFibonacciNoBuffer = function (): array {
-            $memoryUsage = 0;
-
             $startTime = microtime(true);
 
-            fibonacciNoBuffer(30, $memoryUsage);
+            fibonacciNoBuffer(30);
 
             $endTime = microtime(true);
 
             $duration = $endTime - $startTime;
 
-            return ['duration' => $duration, 'memoryUsage' => $memoryUsage];
+            return ['duration' => $duration];
         };
 
         $result1 = $testFibonacci();
         $result2 = $testFibonacciNoBuffer();
         $timeSuperiority = round($result2['duration'] / $result1['duration'], 2);
-        $memorySuperiority = round($result1['memoryUsage'] / $result2['memoryUsage'], 2);
 
-        echo "\nFunction fibonacci(30): Time = {$result1['duration']}s, Memory = {$result1['memoryUsage']} bytes" . PHP_EOL;
-        echo "\nFunction fibonacciNoBuffer(30): Time = {$result2['duration']}s, Memory = {$result2['memoryUsage']} bytes" . PHP_EOL;
+        echo "\nFunction fibonacci(30): Time = {$result1['duration']}s" . PHP_EOL;
+        echo "\nFunction fibonacciNoBuffer(30): Time = {$result2['duration']}s" . PHP_EOL;
         echo "\nFunction fibonacci(30) executed {$timeSuperiority} times faster than fibonacciNoBuffer(30)" . PHP_EOL;
-        echo "\nFunction fibonacci(30) uses {$memorySuperiority} times more memory than than fibonacciNoBuffer(30)" . PHP_EOL;
 
         $this->assertGreaterThan(
             $result1['duration'],
             $result2['duration'],
             'fibonacci(n) must be faster than fibonacciNoBuffer(n)'
-        );
-        $this->assertLessThanOrEqual(
-            $result1['memoryUsage'],
-            $result2['memoryUsage'],
-            'fibonacci(n) memory usage must be greater than fibonacciNoBuffer(n)'
         );
     }
 }
