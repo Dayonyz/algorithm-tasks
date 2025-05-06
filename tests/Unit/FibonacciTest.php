@@ -9,45 +9,45 @@ require_once __DIR__ . '/../../fibonacci.php';
 
 class FibonacciTest extends TestCase
 {
-//    /**
-//     * @throws Exception
-//     */
-//    public function test_fibonacci_function_returns_correct_results()
-//    {
-//        $results = [9 => 34, 18 => 2584, 20 => 6765, 25 => 75025, 31 => 1346269];
-//
-//        foreach ($results as $input => $output) {
-//            $this->assertEquals($output, fibonacci($input));
-//        }
-//    }
-//
-//    /**
-//     * @throws Exception
-//     */
-//    public function test_fibonacci_no_buffer_function_returns_correct_results()
-//    {
-//        $results = [9 => 34, 18 => 2584, 20 => 6765, 25 => 75025, 31 => 1346269];
-//
-//        foreach ($results as $input => $output) {
-//            $this->assertEquals($output, fibonacciNoBuffer($input));
-//        }
-//    }
-//
-//    /**
-//     * @throws Exception
-//     */
-//    public function test_fibonacci_input_greater_or_equal_to_zero()
-//    {
-//        $this->expectException(Exception::class);
-//        $this->expectExceptionMessage('The input value must be greater than or equal to zero.');
-//
-//        fibonacci(-1);
-//
-//        $this->expectException(Exception::class);
-//        $this->expectExceptionMessage('The input value must be greater than or equal to zero.');
-//
-//        fibonacciNoBuffer(-1);
-//    }
+    /**
+     * @throws Exception
+     */
+    public function test_fibonacci_function_returns_correct_results()
+    {
+        $results = [9 => 34, 18 => 2584, 20 => 6765, 25 => 75025, 31 => 1346269];
+
+        foreach ($results as $input => $output) {
+            $this->assertEquals($output, fibonacci($input));
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function test_fibonacci_no_buffer_function_returns_correct_results()
+    {
+        $results = [9 => 34, 18 => 2584, 20 => 6765, 25 => 75025, 31 => 1346269];
+
+        foreach ($results as $input => $output) {
+            $this->assertEquals($output, fibonacciNoBuffer($input));
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function test_fibonacci_input_greater_or_equal_to_zero()
+    {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('The input value must be greater than or equal to zero.');
+
+        fibonacci(-1);
+
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('The input value must be greater than or equal to zero.');
+
+        fibonacciNoBuffer(-1);
+    }
 
     /**
      * @throws Exception
