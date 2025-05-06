@@ -29,6 +29,20 @@ class LongestArithmeticSeriesTest extends TestCase
         $this->assertEquals($results, longestArithmeticSeries($input));
     }
 
+    public function test_doubled_values_splits_to_one()
+    {
+        $input = [1, 4, 7, 7, 5, 3, 9, 5];
+
+        $results = [
+            2 =>
+                [
+                    [1, 3, 5, 7, 9]
+                ]
+        ];
+
+        $this->assertEquals($results, longestArithmeticSeries($input));
+    }
+
     public function test_two_series_results_same_length_with_different_inc_and_cross_elements()
     {
         $input = [1, 4, 7, 5, 3, 9, 10, 13];
