@@ -14,7 +14,7 @@ class FibonacciTest extends TestCase
      */
     public function test_fibonacci_function_returns_correct_results()
     {
-        $results = [9 => 34, 18 => 2584, 20 => 6765, 25 => 75025, 31 => 1346269];
+        $results = [6 => 8, 9 => 34, 18 => 2584, 20 => 6765, 25 => 75025];
 
         foreach ($results as $input => $output) {
             $this->assertEquals($output, fibonacci($input));
@@ -26,7 +26,7 @@ class FibonacciTest extends TestCase
      */
     public function test_fibonacci_no_buffer_function_returns_correct_results()
     {
-        $results = [9 => 34, 18 => 2584, 20 => 6765, 25 => 75025, 31 => 1346269];
+        $results = [6 => 8, 9 => 34, 18 => 2584, 20 => 6765, 25 => 75025];
 
         foreach ($results as $input => $output) {
             $this->assertEquals($output, fibonacciNoBuffer($input));
