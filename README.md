@@ -30,11 +30,17 @@ make ssh
 vendor/bin/phpunit --filter FibonacciTest
 ```
 
-1) Write a function that returns all max length arithmetic series.
+2) Write a function that returns all max length arithmetic series.
 - **Implemented in array.php file**
 ```
 make ssh
 vendor/bin/phpunit --filter LongestArithmeticSeriesTest
 ```
 
+3) Write a function that counts top level domain unique urls.
+- **Implemented in urls.php file**
+```
+make ssh
+vendor/bin/phpunit --filter UniqueTopLevelDomainsUrlsCountTest
+```
 
