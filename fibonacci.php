@@ -76,4 +76,3 @@ function fibonacciNoBuffer(int $n, int &$memoryUsage = 0) {
         return $result;
     }
 }
-
