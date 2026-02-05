@@ -7,6 +7,7 @@
         displayDetailsOnPhpunitDeprecations="true"
         displayDetailsOnTestsThatTriggerErrors="true"
         displayDetailsOnTestsThatTriggerWarnings="true"
+        cacheDirectory=".phpunit.cache"
 >
     <testsuites>
         <testsuite name="Unit Tests">
@@ -19,13 +20,6 @@
             <directory suffix=".php">./</directory>
         </include>
     </source>
-
-<!--    <coverage>-->
-<!--        <report>-->
-<!--            <html outputDirectory="coverage-report"/>-->
-<!--        </report>-->
-<!--    </coverage>-->
-
     <php>
         <ini name="display_errors" value="1"/>
         <ini name="error_reporting" value="E_ALL"/>

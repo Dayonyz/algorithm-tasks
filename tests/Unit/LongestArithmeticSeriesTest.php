@@ -4,8 +4,6 @@ namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 
-require_once __DIR__ . '/../../array.php';
-
 class LongestArithmeticSeriesTest extends TestCase
 {
     public function test_empty_input_returns_empty_array()
