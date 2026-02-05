@@ -3,9 +3,7 @@
 /**
  * @throws Exception
  */
-function fibonacci(int $n, int &$memoryUsage = 0) {
-    $startMemory = memory_get_usage();
-
+function fibonacciRepeatFormula(int $n): int {
     if ($n < 0) {
         throw new Exception('The input value must be greater than or equal to zero.');
     }
@@ -13,66 +11,47 @@ function fibonacci(int $n, int &$memoryUsage = 0) {
     static $buffer = [];
 
     if (isset($buffer[$n])) {
-        $result = $buffer[$n];
-        $memoryUsage += memory_get_usage() - $startMemory;
-
-        $buffer = [];
-
-        return $result;
+        return $buffer[$n];
     }
 
     if ($n === 0) {
-        $memoryUsage += memory_get_usage() - $startMemory;
-
-        $buffer = [];
-
-        return 0;
-    } else if($n === 1 || $n === 2) {
-        $buffer = [];
-
-        return 1;
-    } else if ($n > 2) {
-        $half = (int)floor($n/2);
+        $buffer[0] = 0;
+    } elseif ($n === 1 || $n === 2) {
+        $buffer[$n] = 1;
+    } else {
+        $half = (int)floor($n / 2);
 
         if ($n & 1) {
-            $buffer[$n] = pow(fibonacci($half + 1, $memoryUsage), 2) + pow(fibonacci($half, $memoryUsage), 2);
-
+            $buffer[$n] = pow(fibonacciRepeatFormula($half + 1), 2) +
+                pow(fibonacciRepeatFormula($half), 2);
         } else {
-            $buffer[$n] = fibonacci($half, $memoryUsage)*(2*fibonacci($half - 1, $memoryUsage) + fibonacci($half, $memoryUsage));
+            $buffer[$n] = fibonacciRepeatFormula($half) *
+                (2 * fibonacciRepeatFormula($half - 1) +
+                    fibonacciRepeatFormula($half));
         }
-        $result = $buffer[$n];
-
-        $memoryUsage += memory_get_usage() - $startMemory;
-
-        $buffer = [];
-
-        return $result;
     }
+
+    return $buffer[$n];
 }
 
 /**
  * @throws Exception
  */
-function fibonacciNoBuffer(int $n, int &$memoryUsage = 0) {
-    $startMemory = memory_get_usage();
-
+function fibonacciStraight(int $n): int
+{
     if ($n < 0) {
         throw new Exception('The input value must be greater than or equal to zero.');
     }
 
+    static $buffer = [];
+
     if ($n === 0) {
-        $memoryUsage += memory_get_usage() - $startMemory;
-
-        return 0;
+        $buffer[$n] = 0;
     } else if($n === 1 || $n === 2) {
-        $memoryUsage += memory_get_usage() - $startMemory;
-
-        return 1;
-    } else if ($n > 2) {
-        $result = fibonacciNoBuffer($n - 1, $memoryUsage) + fibonacciNoBuffer($n - 2, $memoryUsage);
-
-        $memoryUsage += memory_get_usage() - $startMemory;
-
-        return $result;
+        $buffer[$n] = 1;
+    } else {
+        $buffer[$n] = fibonacciStraight($n - 1) + fibonacciStraight($n - 2);
     }
+
+    return $buffer[$n];
 }

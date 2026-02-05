@@ -28,6 +28,7 @@ vendor/bin/phpunit --testsuite "Unit Tests"
 ```
 make ssh
 vendor/bin/phpunit --filter FibonacciTest
+php fibonacciBenchmark.php
 ```
 
 2) Write a function that returns all max length arithmetic series.
