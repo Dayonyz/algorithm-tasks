@@ -3,7 +3,7 @@
 /**
  * @throws Exception
  */
-function fibonacciRepeatFormula(int $n): int {
+function fibonacciRepeatedSeries(int $n): int {
     if ($n < 0) {
         throw new Exception('The input value must be greater than or equal to zero.');
     }
@@ -22,12 +22,12 @@ function fibonacciRepeatFormula(int $n): int {
         $half = (int)floor($n / 2);
 
         if ($n & 1) {
-            $buffer[$n] = pow(fibonacciRepeatFormula($half + 1), 2) +
-                pow(fibonacciRepeatFormula($half), 2);
+            $buffer[$n] = pow(fibonacciRepeatedSeries($half + 1), 2) +
+                pow(fibonacciRepeatedSeries($half), 2);
         } else {
-            $buffer[$n] = fibonacciRepeatFormula($half) *
-                (2 * fibonacciRepeatFormula($half - 1) +
-                    fibonacciRepeatFormula($half));
+            $buffer[$n] = fibonacciRepeatedSeries($half) *
+                (2 * fibonacciRepeatedSeries($half - 1) +
+                    fibonacciRepeatedSeries($half));
         }
     }
 

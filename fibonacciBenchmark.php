@@ -7,7 +7,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$testFibonacciRepeatFormula = function (): array {
+$testFibonacciRepeatedSeries = function (): array {
     gc_disable();
     gc_collect_cycles();
 
@@ -15,7 +15,7 @@ $testFibonacciRepeatFormula = function (): array {
 
     $startTime = hrtime(true);
 
-    fibonacciRepeatFormula(32);
+    fibonacciRepeatedSeries(32);
 
     $endTime = hrtime(true);
 
@@ -47,12 +47,12 @@ $testFibonacciStraight = function (): array {
     return ['duration' => $duration, 'memory' => $afterMemory - $beforeMemory];
 };
 
-$resultRepeatFormula = $testFibonacciRepeatFormula();
+$resultRepeatedSeries = $testFibonacciRepeatedSeries();
 $resultStraight = $testFibonacciStraight();
-$timeSuperiority = round($resultStraight['duration'] / $resultRepeatFormula['duration']);
-$memorySuperiority = round( $resultStraight['memory'] / $resultRepeatFormula['memory'], 2);
+$timeSuperiority = round($resultStraight['duration'] / $resultRepeatedSeries['duration']);
+$memorySuperiority = round( $resultStraight['memory'] / $resultRepeatedSeries['memory'], 2);
 
-echo "\nFunction fibonacciRepeatFormula(32): Time = {$resultRepeatFormula['duration']}ns, Memory = {$resultRepeatFormula['memory']} bytes" . PHP_EOL;
+echo "\nFunction fibonacciRepeatedSeries(32): Time = {$resultRepeatedSeries['duration']}ns, Memory = {$resultRepeatedSeries['memory']} bytes" . PHP_EOL;
 echo "\nFunction fibonacciStraight(32): Time = {$resultStraight['duration']}ns, Memory = {$resultStraight['memory']} bytes" . PHP_EOL;
-echo "\nFunction fibonacciRepeatFormula(32) executed {$timeSuperiority} times faster than fibonacciStraight(32)" . PHP_EOL;
-echo "\nFunction fibonacciStraight(32) consumed {$memorySuperiority}× more memory than fibonacciRepeatFormula(32)" . PHP_EOL;
+echo "\nFunction fibonacciRepeatedSeries(32) executed {$timeSuperiority} times faster than fibonacciStraight(32)" . PHP_EOL;
+echo "\nFunction fibonacciStraight(32) consumed {$memorySuperiority}× more memory than fibonacciRepeatedSeries(32)" . PHP_EOL;
