@@ -5,8 +5,6 @@ namespace Tests\Unit;
 use Exception;
 use PHPUnit\Framework\TestCase;
 
-require_once __DIR__ . '/../../fibonacci.php';
-
 class FibonacciTest extends TestCase
 {
     /**

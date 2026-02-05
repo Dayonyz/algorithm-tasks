@@ -3,9 +3,8 @@
 namespace Tests\Unit;
 
 use Exception;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-
-require_once __DIR__ . '/../../urls.php';
 
 class UniqueTopLevelDomainsUrlsCountTest extends TestCase
 {
@@ -58,7 +57,7 @@ class UniqueTopLevelDomainsUrlsCountTest extends TestCase
 
     public function testThrowsExceptionOnInvalidUrls(): void
     {
-        $this->expectException(Exception::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Input parameter is not array of urls strings');
 
         uniqueTopLevelDomainsUrlsCount(['invalid-url', 123, null]);
