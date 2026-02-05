@@ -4,12 +4,18 @@
  *
  * @throws Exception
  */
-function fibonacciRepeatedSeriesGMP(int $n): GMP {
+function fibonacciRepeatedSeriesGMP(?int $n): GMP {
     if ($n < 0) {
         throw new Exception('The input value must be >= 0.');
     }
 
     static $buffer = [];
+
+    if (is_null($n)) {
+        $buffer = [];
+
+        return gmp_init(0);
+    }
 
     if (isset($buffer[$n])) {
         return $buffer[$n];
@@ -40,12 +46,18 @@ function fibonacciRepeatedSeriesGMP(int $n): GMP {
  *
  * @throws Exception
  */
-function fibonacciStraightGMP(int $n): GMP {
+function fibonacciStraightGMP(?int $n): GMP {
     if ($n < 0) {
         throw new Exception('The input value must be >= 0.');
     }
 
     static $buffer = [];
+
+    if (is_null($n)) {
+        $buffer = [];
+
+        return gmp_init(0);
+    }
 
     if (isset($buffer[$n])) {
         return $buffer[$n];

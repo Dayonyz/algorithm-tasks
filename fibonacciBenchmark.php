@@ -10,7 +10,7 @@ $dotenv->load();
 /**
  * @throws Exception
  */
-$testFibonacciRepeatedSeriesGMP = function (): array {
+$testFibonacciRepeatedSeriesGMP = function (?int $n): array {
     gc_disable();
     gc_collect_cycles();
 
@@ -18,7 +18,7 @@ $testFibonacciRepeatedSeriesGMP = function (): array {
 
     $startTime = hrtime(true);
 
-    fibonacciRepeatedSeriesGMP(10000);
+    fibonacciRepeatedSeriesGMP($n);
 
     $endTime = hrtime(true);
 
@@ -34,7 +34,7 @@ $testFibonacciRepeatedSeriesGMP = function (): array {
 /**
  * @throws Exception
  */
-$testFibonacciStraightGMP = function (): array {
+$testFibonacciStraightGMP = function (?int $n): array {
     gc_disable();
     gc_collect_cycles();
 
@@ -42,7 +42,7 @@ $testFibonacciStraightGMP = function (): array {
 
     $startTime = hrtime(true);
 
-    fibonacciStraightGMP(10000);
+    fibonacciStraightGMP($n);
 
     $endTime = hrtime(true);
 
@@ -53,37 +53,45 @@ $testFibonacciStraightGMP = function (): array {
     return ['duration' => $duration, 'memory' => $afterMemory - $beforeMemory];
 };
 
-$resultRepeatedSeries = $testFibonacciRepeatedSeriesGMP();
-$resultStraight = $testFibonacciStraightGMP();
+for ($i = 1; $i <= 10; $i ++) {
+    $elements = $i*1000;
 
-$timeSuperiority = round($resultStraight['duration'] / $resultRepeatedSeries['duration'], 2);
-$memorySuperiority = round( $resultStraight['memory'] / $resultRepeatedSeries['memory'], 2);
+    $testFibonacciRepeatedSeriesGMP(null);
+    $testFibonacciStraightGMP(null);
 
-echo "\r\n";
-echo sprintf(
-    "Function fibonacciStraight(10000): Time = %s ns, Memory = %s bytes%s",
-    $resultStraight['duration'],
-    $resultStraight['memory'],
-    PHP_EOL
-);
+    $resultRepeatedSeries = $testFibonacciRepeatedSeriesGMP($elements);
+    $resultStraight = $testFibonacciStraightGMP($elements);
 
-echo sprintf(
-    "Function fibonacciRepeatedSeriesGMP(10000): Time = %s ns, Memory = %s bytes%s",
-    $resultRepeatedSeries['duration'],
-    $resultRepeatedSeries['memory'],
-    PHP_EOL
-);
+    $timeSuperiority = round($resultStraight['duration'] / $resultRepeatedSeries['duration'], 2);
+    $memorySuperiority = round( $resultStraight['memory'] / $resultRepeatedSeries['memory'], 2);
 
-echo sprintf(
-    "Function fibonacciRepeatedSeriesGMP(10000) executed %s times faster than fibonacciStraightGMP(10000)%s",
-    $timeSuperiority,
-    PHP_EOL
-);
+    echo "Fibonacci(N), N = {$elements}: \r\n";
+    echo sprintf(
+        "Function fibonacciStraight($elements): Time = %s ns, Memory = %s bytes%s",
+        $resultStraight['duration'],
+        $resultStraight['memory'],
+        PHP_EOL
+    );
 
-echo sprintf(
-    "Function fibonacciStraightGMP(10000) consumed %s× more memory than fibonacciRepeatedSeriesGMP(10000)%s",
-    $memorySuperiority,
-    PHP_EOL
-);
-echo "\r\n";
+    echo sprintf(
+        "Function fibonacciRepeatedSeriesGMP($elements): Time = %s ns, Memory = %s bytes%s",
+        $resultRepeatedSeries['duration'],
+        $resultRepeatedSeries['memory'],
+        PHP_EOL
+    );
+
+    echo sprintf(
+        "Function fibonacciRepeatedSeriesGMP($elements) executed %s times faster than fibonacciStraightGMP($elements)%s",
+        $timeSuperiority,
+        PHP_EOL
+    );
+
+    echo sprintf(
+        "Function fibonacciStraightGMP($elements) consumed %s× more memory than fibonacciRepeatedSeriesGMP($elements)%s",
+        $memorySuperiority,
+        PHP_EOL
+    );
+    echo "\r\n";
+}
+
 
