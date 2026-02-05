@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     nano
 
 RUN apt-get update && apt-get install -y libonig-dev \
-    && docker-php-ext-install mbstring
+    libgmp-dev \
+    && docker-php-ext-install mbstring gmp
 
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug
