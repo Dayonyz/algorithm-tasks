@@ -15,7 +15,7 @@ $testFibonacciRepeatFormula = function (): array {
 
     $startTime = hrtime(true);
 
-    fibonacciRepeatFormula(30);
+    fibonacciRepeatFormula(32);
 
     $endTime = hrtime(true);
 
@@ -36,7 +36,7 @@ $testFibonacciStraight = function (): array {
 
     $startTime = hrtime(true);
 
-    fibonacciStraight(30);
+    fibonacciStraight(32);
 
     $endTime = hrtime(true);
 
@@ -49,10 +49,10 @@ $testFibonacciStraight = function (): array {
 
 $resultRepeatFormula = $testFibonacciRepeatFormula();
 $resultStraight = $testFibonacciStraight();
-$timeSuperiority = round($resultStraight['duration'] / $resultRepeatFormula['duration'], 2);
+$timeSuperiority = round($resultStraight['duration'] / $resultRepeatFormula['duration']);
 $memorySuperiority = round( $resultStraight['memory'] / $resultRepeatFormula['memory'], 2);
 
-echo "\nFunction fibonacciRepeatFormula(30): Time = {$resultRepeatFormula['duration']}ns, Memory = {$resultRepeatFormula['memory']} bytes" . PHP_EOL;
-echo "\nFunction fibonacciStraight(30): Time = {$resultStraight['duration']}ns, Memory = {$resultStraight['memory']} bytes" . PHP_EOL;
-echo "\nFunction fibonacciRepeatFormula(30) executed {$timeSuperiority} times faster than fibonacciStraight(30)" . PHP_EOL;
-echo "\nFunction fibonacciStraight(30) consumed {$memorySuperiority}× more memory than fibonacciRepeatFormula(30)" . PHP_EOL;
+echo "\nFunction fibonacciRepeatFormula(32): Time = {$resultRepeatFormula['duration']}ns, Memory = {$resultRepeatFormula['memory']} bytes" . PHP_EOL;
+echo "\nFunction fibonacciStraight(32): Time = {$resultStraight['duration']}ns, Memory = {$resultStraight['memory']} bytes" . PHP_EOL;
+echo "\nFunction fibonacciRepeatFormula(32) executed {$timeSuperiority} times faster than fibonacciStraight(32)" . PHP_EOL;
+echo "\nFunction fibonacciStraight(32) consumed {$memorySuperiority}× more memory than fibonacciRepeatFormula(32)" . PHP_EOL;
